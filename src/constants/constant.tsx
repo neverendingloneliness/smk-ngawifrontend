@@ -22,10 +22,6 @@ export const NAVLIST  = [
         label:"Ekstrakurikuler",
     },
     {
-        key:"prestasi",
-        label:"Prestasi",
-    },
-    {
         key:"location",
         label:"Location",
     },
@@ -79,23 +75,32 @@ export const JURUSANLIST = [
 
 export const EKSTRAKURIKULERCAROUSEL = [
     {
-        img:"",
-        title:"",
-        description:""
+        img: "/src/assets/ekstra/futsal.jpeg",
+        title: "Futsal",
+        description: "Olahraga tim yang melatih kerjasama, ketangkasan, dan sportivitas di lapangan."
     },
     {
-        img:"",
-        title:"",
-        description:""
+        img: "/src/assets/ekstra/paskibra.jpg",
+        title: "Paskibra",
+        description: "Membentuk disiplin dan jiwa kepemimpinan melalui latihan baris-berbaris dan upacara."
     },
     {
-        img:"",
-        title:"",
-        description:""
+        img: "/src/assets/ekstra/robotics.jpg",
+        title: "Robotika",
+        description: "Mengembangkan kreativitas dan inovasi dalam merancang serta memprogram robot."
     },
     {
-        img:"",
-        title:"",
-        description:""
+        img: "/src/assets/ekstra/PMR.jpg",
+        title: "Palang Merah Remaja (PMR)",
+        description: "Belajar keterampilan pertolongan pertama dan meningkatkan kepedulian sosial."
+    }
+]
+
+export const LOCATION = [
+    {
+        location:"Jln. Rajawali No.32 Beran 1, Beran, Kecamatan Ngawi, Kabupaten Ngawi, Jawa Timur 63216",
+        telp:"(0351) 746081",
+        email:"tatausahasmkpgri1ngawi@gmail.com",
+        support:"admin@smkpgri1ngawi.sch.id"
     }
 ]

@@ -4,7 +4,9 @@ import { NAVLIST } from '../../constants/constant'
 import About from './About'
 import Jurusan from './Jurusan'
 import Ekstrakulikuler from './Ekstrakulikuler'
+import Location from './Location'
 import Hero from './Hero'
+import Footer from '@/components/layout/Footer'
 
 export const Main = () => {
   // ngeset state buat ngelacak section sekarang
@@ -44,6 +46,11 @@ export const Main = () => {
       <div ref={sectionRefs['ekstrakurikuler']} id='ekstrakurikuler'>
         <Ekstrakulikuler />
       </div>
+      <div ref={sectionRefs['location']} id='location'>
+        <Location />
+      </div>
+      <Footer />
+      
     </>
   )
 }

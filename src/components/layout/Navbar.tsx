@@ -45,7 +45,7 @@ const Navbar : React.FC<NavbarProps> = ({navlist, currentSection, onNavClick }) 
             <div className='flex gap-3 text-sm text-center items-center justify-center'>
 
                 <button>Masuk</button>
-                <button className='flex gap-1 bg-yellow-400 py-1 px-5 rounded-xl  '>
+                <button className='hover:bg-black hover:text-white duration-300 flex gap-1 bg-yellow-400 py-1 px-5 rounded-xl  '>
                     Daftar
                     <MdArrowOutward />
                 </button>
