@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { MdArrowOutward } from "react-icons/md";
+import { Link, useNavigate } from "react-router";
 
 interface NavbarProps {
     navlist : Array<{key:string; label:string}>,
@@ -10,6 +11,7 @@ interface NavbarProps {
 const Navbar : React.FC<NavbarProps> = ({navlist, currentSection, onNavClick }) => {
 
   const [header, setHeader] = useState(false)
+  
 
   const scrollHeader = () => {
     if(window.scrollY >= 20){
@@ -43,8 +45,11 @@ const Navbar : React.FC<NavbarProps> = ({navlist, currentSection, onNavClick }) 
                     ))}
                 </ul>
             <div className='flex gap-3 text-sm text-center items-center justify-center'>
-
-                <button>Masuk</button>
+                
+                <Link to={'/login'}>
+                    <button>Masuk</button>
+                </Link>
+                
                 <button className='hover:bg-black hover:text-white duration-300 flex gap-1 bg-yellow-400 py-1 px-5 rounded-xl  '>
                     Daftar
                     <MdArrowOutward />
