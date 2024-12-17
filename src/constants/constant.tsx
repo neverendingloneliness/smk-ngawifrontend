@@ -1,0 +1,26 @@
+export const NAVLIST  = [
+    {
+        key:"home",
+        label:"Home"
+    },
+    {
+        key:"about",
+        label:"About",
+    },
+    {
+        key:"jurusan",
+        label:"Jurusan",
+    },
+    {
+        key:"ekstrakurikuler",
+        label:"Ekstrakurikuler",
+    },
+    {
+        key:"prestasi",
+        label:"Prestasi",
+    },
+    {
+        key:"location",
+        label:"Location",
+    },
+]
