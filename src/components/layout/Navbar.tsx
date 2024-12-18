@@ -50,10 +50,12 @@ const Navbar : React.FC<NavbarProps> = ({navlist, currentSection, onNavClick }) 
                     <button>Masuk</button>
                 </Link>
                 
+                <Link to={'/register'}>
                 <button className='hover:bg-black hover:text-white duration-300 flex gap-1 bg-yellow-400 py-1 px-5 rounded-xl  '>
                     Daftar
                     <MdArrowOutward />
                 </button>
+                </Link>
             </div>
         </div>
     </nav>

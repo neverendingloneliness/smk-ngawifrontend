@@ -39,9 +39,10 @@ const Login = () => {
       }
 
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div className='flex flex-col justify-center items-center mt-10'>
+      <h1 className='text-2xl font-bold'>Login <span className='text-yellow-400'>Peserta</span> Didik</h1>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="mt-10 flex flex-col gap-5">
             <FormField
               control={form.control}
               name="email"
@@ -68,14 +69,12 @@ const Login = () => {
                 </FormItem>
               )}
             />
-            <div className='flex gap-16 items-center justify-center'>
-                <Button type="submit">Submit</Button>
+                <Button type="submit" className='bg-yellow-400 text-black border-2 border-black hover:bg-white hover:border-yellow-400'>Submit</Button>
                 <p className='flex gap-2'>Dont have account? 
                     <Link to={'/register'}>
-                        <button>Sign Up</button>
+                        <button className='font-bold underline'>Sign Up</button>
                     </Link>
                 </p>
-            </div>
           </form>
         </Form>
     </div>

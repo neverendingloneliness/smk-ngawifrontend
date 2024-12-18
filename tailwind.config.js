@@ -52,7 +52,11 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+	
+		backgroundImage: {
+			'registration' : "url('/src/assets/auth/bg_regis.png') ", 
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],
