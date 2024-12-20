@@ -9,6 +9,8 @@ import RegisterWali from './pages/auth/sign-up-wali/register.tsx'
 import DashboardStudent from './pages/student/dashboard/dashboard.tsx'
 import DashboardAdmin from './pages/admin/dashboard/dashboard.tsx'
 import JurusanAdmin from './pages/admin/dashboard/jurusan.tsx'
+import DataPeserta from './pages/admin/dashboard/peserta.tsx'
+import FormAddJurusan from './pages/admin/dashboard/formaddjurusan.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -22,6 +24,8 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/student/dashboard/:id' element={<DashboardStudent />} />
           <Route path='/admin/dashboard' element={<DashboardAdmin />} />
           <Route path='/admin/dashboard/jurusan' element={<JurusanAdmin />} />
+          <Route path='/admin/dashboard/datapeserta' element={<DataPeserta />} />
+          <Route path='/admin/dashboard/addjurusan' element={<FormAddJurusan />} />
         </Route>
       </Routes>
     </BrowserRouter>

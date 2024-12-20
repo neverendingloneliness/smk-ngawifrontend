@@ -10,7 +10,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
- 
+import { Button } from '@/components/ui/button'
+import { CiCirclePlus } from "react-icons/ci";
+import { GrUpdate } from "react-icons/gr";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const JurusanAdmin = () => {
   return (
@@ -22,20 +26,33 @@ const JurusanAdmin = () => {
           <h1 className='text-3xl font-bold'>Jurusan</h1>
           <Table>
             <TableCaption>A list of your recent invoices.</TableCaption>
-            <TableHeader>
+            <TableHeader >
+              <Link to={'/admin/dashboard/addjurusan'}>
+                <Button className='mb-8 bg-yellow-200 text-black hover:bg-black hover:text-white' >
+                 <CiCirclePlus className='font-bold' />
+                  Add jurusan
+                </Button>
+              </Link>
               <TableRow>
-                <TableHead className="w-[100px]">Invoice</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Method</TableHead>
-                <TableHead className="text-right">Amount</TableHead>
+                <TableHead className="w-[100px]">jurusan</TableHead>
+                <TableHead>deskripsi jurusan</TableHead>
+                <TableHead className="text-right">Action</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               <TableRow>
-                <TableCell className="font-medium">INV001</TableCell>
                 <TableCell>Paid</TableCell>
                 <TableCell>Credit Card</TableCell>
-                <TableCell className="text-right">$250.00</TableCell>
+                <TableCell className="items-end justify-end flex gap-5">
+                  <Button className='bg-yellow-200 text-black hover:bg-black hover:text-white'>
+                    <GrUpdate />
+                    Update
+                  </Button>
+                  <Button className='bg-yellow-200 text-black hover:bg-black hover:text-white'>
+                    <FaRegTrashAlt />
+                    Delete
+                  </Button>
+                </TableCell>
               </TableRow>
             </TableBody>
           </Table>

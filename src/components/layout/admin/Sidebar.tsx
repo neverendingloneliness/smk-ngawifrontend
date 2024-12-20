@@ -33,10 +33,12 @@ const SidebarAdmin : React.FC<SideBarProps> = ({}) => {
                     </Link>
                 </div>
                 <div className="space-y-3">
-                    <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
-                        <MdOutlinePeopleAlt  className="mr-2 text-lg"/>
-                        Data Peserta
-                    </Button>
+                    <Link to={'/admin/dashboard/datapeserta'}>
+                        <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
+                            <MdOutlinePeopleAlt  className="mr-2 text-lg"/>
+                            Data Peserta
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </div>
