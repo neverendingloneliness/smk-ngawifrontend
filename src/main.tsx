@@ -5,6 +5,10 @@ import './index.css'
 import { Main } from './pages/landing/Main.tsx'
 import Login from './pages/auth/sign-in/login.tsx'
 import Register from './pages/auth/sign-up/register.tsx'
+import RegisterWali from './pages/auth/sign-up-wali/register.tsx'
+import DashboardStudent from './pages/student/dashboard/dashboard.tsx'
+import DashboardAdmin from './pages/admin/dashboard/dashboard.tsx'
+import JurusanAdmin from './pages/admin/dashboard/jurusan.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -13,7 +17,11 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/'>
           <Route index element={<Main />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
+          <Route path='/register/student' element={<Register />} />
+          <Route path='/register/wali' element={<RegisterWali />} />
+          <Route path='/student/dashboard/:id' element={<DashboardStudent />} />
+          <Route path='/admin/dashboard' element={<DashboardAdmin />} />
+          <Route path='/admin/dashboard/jurusan' element={<JurusanAdmin />} />
         </Route>
       </Routes>
     </BrowserRouter>

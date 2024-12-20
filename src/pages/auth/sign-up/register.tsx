@@ -43,7 +43,6 @@ const formSchema = z.object({
     password: z.string().max(8, {
         message: "Password must be 8 characters.",
       }),
-      
   })
    
 
