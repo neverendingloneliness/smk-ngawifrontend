@@ -11,6 +11,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Button } from '@/components/ui/button'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { FormControl } from '@/components/ui/form'
  
 
 const DataPeserta = () => {
@@ -33,10 +35,12 @@ const DataPeserta = () => {
             </TableHeader>
             <TableBody>
               <TableRow>
-                <TableCell>Paid</TableCell>
-                <TableCell>Credit Card</TableCell>
-                <TableCell>Credit Card</TableCell>
-                <TableCell>Credit Card</TableCell>
+                <TableCell>Engkok onk data e</TableCell>
+                <TableCell>ENgkok ONK DATAE</TableCell>
+                <TableCell>ENgkok ONK DATAE</TableCell>
+                <TableCell>
+                  ENgkok ONK DATAE
+                </TableCell>
               </TableRow>
             </TableBody>
           </Table>

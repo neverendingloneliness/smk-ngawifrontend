@@ -13,7 +13,7 @@ const Hero = () => {
                 <h1 className='text-3xl font-bold hover:scale-110 duration-300'>{HERO.title}</h1>
                 <p className='text-sm hover:scale-110 duration-300'>{HERO.description}</p>
                 <h3 >{HERO.hook}</h3>
-                <Link to={'/register'}  className='py-2 hover:animate-pulse rounded-xl text-center border-2 border-black bg-yellow-400 hover:bg-black duration-300 hover:scale-110 hover:text-white '>
+                <Link to={'/register/student'}  className='py-2 hover:animate-pulse rounded-xl text-center border-2 border-black bg-yellow-400 hover:bg-black duration-300 hover:scale-110 hover:text-white '>
                     <button>
                         Daftar Sekarang!
                     </button>

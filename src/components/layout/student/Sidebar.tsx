@@ -18,22 +18,20 @@ const SidebarStudent : React.FC<SideBarProps> = ({}) => {
                     Student Dashboard
                 </h2>
                 <div className="space-y-3">
-                    <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
-                        <AiOutlineHome className="mr-2 text-lg"/>
-                        Home
-                    </Button>
+                    <Link to={'/student/dashboard/:id'}>
+                        <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
+                            <AiOutlineHome className="mr-2 text-lg"/>
+                            Home
+                        </Button>
+                    </Link>
                 </div>
                 <div className="space-y-3">
-                    <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
-                        <TbMessage2  className="mr-2 text-lg"/>
-                        Announcement
-                    </Button>
-                </div>
-                <div className="space-y-3">
-                    <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
-                        <MdOutlinePeopleAlt  className="mr-2 text-lg"/>
-                        Wali
-                    </Button>
+                    <Link to={'/student/dashboard/:id/announcement'}>
+                        <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
+                            <TbMessage2  className="mr-2 text-lg"/>
+                            Announcement
+                        </Button>
+                    </Link>
                 </div>
                 <div className="space-y-3">
                     <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">

@@ -26,20 +26,20 @@ const formSchema = z.object({
     
   })
 
-
 const FormAddJurusan = () => {
-    const form = useForm<z.infer<typeof formSchema>>({
-                  resolver: zodResolver(formSchema),
-                  defaultValues: {
-                    jurusan: "",
-                    deskripsiJurusan:"",
-                    
-                  },
-                })
-          
-        function onSubmit(values: z.infer<typeof formSchema>) {
-          console.log(values)
-        }
+  
+const form = useForm<z.infer<typeof formSchema>>({
+              resolver: zodResolver(formSchema),
+              defaultValues: {
+                jurusan: "",
+                deskripsiJurusan:"",
+                
+              },
+            })
+      
+function onSubmit(values: z.infer<typeof formSchema>) {
+   console.log(values)
+}
 
 return (
     <div className='flex'>
@@ -47,7 +47,7 @@ return (
             <SidebarAdmin  />
         </div>
 
-        <div className='flex flex-col justify-center items-center mt-10 w-full h-full '>
+      <div className='flex flex-col justify-center items-center mt-10 w-full h-full '>
         <h1 className='text-2xl font-bold '>Tambah <span className='text-yellow-400'>Jurusan</span>  </h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="
@@ -57,7 +57,7 @@ return (
               name="jurusan"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nama Lengkap</FormLabel>
+                  <FormLabel>Nama Jurusan</FormLabel>
                   <FormControl>
                     <Input placeholder="jurusan" className='' {...field} />
                   </FormControl>
@@ -65,14 +65,12 @@ return (
                 </FormItem>
               )}
             />  
-
-
             <FormField
               control={form.control}
               name="deskripsiJurusan"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nama Lengkap</FormLabel>
+                  <FormLabel>Deksripsi Jurusan</FormLabel>
                   <FormControl>
                     <Input placeholder="deksripsi jurusan" className='' {...field} />
                   </FormControl>
@@ -84,7 +82,7 @@ return (
               <Button className='bg-yellow-400 col-span-2 border-2 border-black hover:bg-white hover:border-yellow-400 text-black ' type="submit">Submit</Button>
           </form>
         </Form>
-    </div>
+      </div>
     </div>
   )
 }

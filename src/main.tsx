@@ -11,6 +11,8 @@ import DashboardAdmin from './pages/admin/dashboard/dashboard.tsx'
 import JurusanAdmin from './pages/admin/dashboard/jurusan.tsx'
 import DataPeserta from './pages/admin/dashboard/peserta.tsx'
 import FormAddJurusan from './pages/admin/dashboard/formaddjurusan.tsx'
+import Announcement from './pages/student/dashboard/announcement.tsx'
+import FormPendaftaranJurusan from './pages/student/dashboard/FormPendaftaran.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -22,6 +24,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/register/student' element={<Register />} />
           <Route path='/register/wali' element={<RegisterWali />} />
           <Route path='/student/dashboard/:id' element={<DashboardStudent />} />
+          <Route path='/student/dashboard/:id/announcement' element={<Announcement />} />
           <Route path='/admin/dashboard' element={<DashboardAdmin />} />
           <Route path='/admin/dashboard/jurusan' element={<JurusanAdmin />} />
           <Route path='/admin/dashboard/datapeserta' element={<DataPeserta />} />

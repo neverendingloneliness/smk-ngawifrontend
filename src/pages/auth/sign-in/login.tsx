@@ -71,7 +71,7 @@ const Login = () => {
             />
                 <Button type="submit" className='bg-yellow-400 text-black border-2 border-black hover:bg-white hover:border-yellow-400'>Submit</Button>
                 <p className='flex gap-2'>Dont have account? 
-                    <Link to={'/register/wali'}>
+                    <Link to={'/register/student'}>
                         <button className='font-bold underline'>Sign Up</button>
                     </Link>
                 </p>

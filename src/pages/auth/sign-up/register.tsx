@@ -35,10 +35,18 @@ const formSchema = z.object({
       required_error: "Please select gender to display.",
     }),
     phone: z.string().min(2, {message : "Phone number must be at least 2 characters "}),
+    asalSekolah: z
+    .string({
+      required_error: "Please insert your past school.",
+    }).min(2, {message: "Asal sekolah jangan kosong!"}),
     alamat: z
     .string({
       required_error: "Please insert your address.",
-    }).min(2, {message: "Address must be at least 2 characters"}),
+    }).min(2, {message: "Address must be filled"}),
+    jurusan: z
+    .string({
+      required_error: "Please insert your desired jurusan.",
+    }),
     email: z.string().min(1, { message: "This field has to be filled." }).email("This is not a valid email."),
     password: z.string().max(8, {
         message: "Password must be 8 characters.",
@@ -55,7 +63,9 @@ const Register = () => {
             namalengkap: "",
             tanggallahir: "",
             gender:"",
+            asalSekolah:"",
             alamat:"",
+            jurusan:"",
             email: "",
             password: "",
           },
@@ -145,6 +155,20 @@ const Register = () => {
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name="asalSekolah"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Asal Sekolah</FormLabel>
+                  <FormControl>
+                    <Input placeholder="asal sekolah" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="alamat"
@@ -155,6 +179,27 @@ const Register = () => {
                     <Input type='text' placeholder="alamat" {...field} />
                   </FormControl>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="gender"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Jurusan yang ingin dipilih</FormLabel>
+                   <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select jurusan to display" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="laki-laki">A</SelectItem>
+                        <SelectItem value="perempuan">B</SelectItem>
+                      </SelectContent>
+                    </Select>
                 </FormItem>
               )}
             />
