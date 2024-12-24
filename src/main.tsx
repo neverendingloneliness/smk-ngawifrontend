@@ -12,10 +12,14 @@ import JurusanAdmin from './pages/admin/dashboard/jurusan.tsx'
 import DataPeserta from './pages/admin/dashboard/peserta.tsx'
 import FormAddJurusan from './pages/admin/dashboard/formaddjurusan.tsx'
 import Announcement from './pages/student/dashboard/announcement.tsx'
-import FormPendaftaranJurusan from './pages/student/dashboard/FormPendaftaran.tsx'
+import { Provider } from 'react-redux'
+import store from './store/store.ts'
+import FormUpdateJurusan from './pages/admin/dashboard/formupdatejurusan.tsx'
+import FormUpdateJurusanWrapper from './pages/wrapper/formupdatejurusanwrapper.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route path='/'>
@@ -29,8 +33,10 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/admin/dashboard/jurusan' element={<JurusanAdmin />} />
           <Route path='/admin/dashboard/datapeserta' element={<DataPeserta />} />
           <Route path='/admin/dashboard/addjurusan' element={<FormAddJurusan />} />
+          <Route path='/admin/dashboard/updatejurusan/:jurusan' element={<FormUpdateJurusanWrapper />} />
         </Route>
       </Routes>
     </BrowserRouter>
+    </Provider>
   </StrictMode>,
 )

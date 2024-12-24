@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form"
 
 import { Input } from "@/components/ui/input"
-import { useAddJurusanMutation } from '@/store/slices/jurusanSlice.service'
+import { useAddJurusanMutation, useUpdateJurusanMutation } from '@/store/slices/jurusanSlice.service'
 import { Jurusan } from '@/interfaces/jurusan'
 
 const formSchema = z.object({
@@ -28,39 +28,52 @@ const formSchema = z.object({
     
   })
 
-const FormAddJurusan = () => {
+interface FormUpdatejurusanProps{
+    selectedJurusan: Jurusan 
+}  
+
+const FormUpdateJurusan : React.FC<FormUpdatejurusanProps> = ({selectedJurusan}) => {
   
-  const [addJurusan, { isLoading, isSuccess, isError }] = useAddJurusanMutation()
+  const [updateJurusan, { isLoading, isSuccess, isError }] = useUpdateJurusanMutation()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      nama_jurusan: '',
-      deskripsi_jurusan: '',
+      nama_jurusan: selectedJurusan?.nama_jurusan || '',
+      deskripsi_jurusan: selectedJurusan?.deskripsi_jurusan || '',
     },
   })
 
+  useEffect(() => {
+    if (selectedJurusan) {
+      form.reset({
+        nama_jurusan: selectedJurusan.nama_jurusan,
+        deskripsi_jurusan: selectedJurusan.deskripsi_jurusan,
+      });
+    }
+  }, [selectedJurusan, form])
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const response = await addJurusan({
+      const response = await updateJurusan({
+        jurusan: selectedJurusan.slug_jurusan,
         nama_jurusan: values.nama_jurusan,
         deskripsi_jurusan: values.deskripsi_jurusan,
-      }).unwrap();
-      console.log('Jurusan created successfully:', response);
-      form.reset(); 
+      }).unwrap()
+      console.log('Jurusan updated successfully:', response)
     } catch (error) {
-      console.error('Failed to create jurusan:', error);
+      console.error('Failed to create jurusan:', error)
     }
   }
+  
 
 return (
     <div className='flex'>
         <div className='hidden lg:block w-[18%] '>
             <SidebarAdmin  />
         </div>
-
       <div className='flex flex-col justify-center items-center mt-10 w-full h-full '>
-        <h1 className='text-2xl font-bold '>Tambah <span className='text-yellow-400'>Jurusan</span>  </h1>
+        <h1 className='text-2xl font-bold '>Update <span className='text-yellow-400'>Jurusan</span>  </h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="
            bg-white rounded-xl p-10 mt-5 gap-8  grid grid-cols-2 justify-center items-center">
@@ -90,9 +103,8 @@ return (
                 </FormItem>
               )}
             />  
-
               <Button className='bg-yellow-400 col-span-2 border-2 border-black hover:bg-white hover:border-yellow-400 text-black ' type="submit">
-                {isLoading ? 'Submitting...' : 'Submit'}
+                {isLoading ? 'Updating...' : 'Submit'}
               </Button>
           </form>
         </Form>
@@ -103,4 +115,4 @@ return (
   )
 }
 
-export default FormAddJurusan
+export default FormUpdateJurusan
