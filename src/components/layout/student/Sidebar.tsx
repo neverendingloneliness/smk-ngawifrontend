@@ -11,6 +11,7 @@ interface SideBarProps{
 
 const SidebarStudent : React.FC<SideBarProps> = ({}) => {
     const {id} = useParams() 
+    const sanitizedId = id?.replace(/[^\w-]/g, "")
   return (
     <div className="pb-12 min-h-screen">
         <div className="space-y-4 py-4">
@@ -19,7 +20,7 @@ const SidebarStudent : React.FC<SideBarProps> = ({}) => {
                     Student Dashboard
                 </h2>
                 <div className="space-y-3">
-                    <Link to={`/student/dashboard/${id}`}>
+                    <Link to={`/student/dashboard/${sanitizedId}`}>
                         <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
                             <AiOutlineHome className="mr-2 text-lg"/>
                             Home
@@ -27,7 +28,7 @@ const SidebarStudent : React.FC<SideBarProps> = ({}) => {
                     </Link>
                 </div>
                 <div className="space-y-3">
-                    <Link to={'/student/dashboard/:id/announcement'}>
+                    <Link to={`/student/dashboard/${sanitizedId}}/announcement`}>
                         <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
                             <TbMessage2  className="mr-2 text-lg"/>
                             Announcement
@@ -35,10 +36,12 @@ const SidebarStudent : React.FC<SideBarProps> = ({}) => {
                     </Link>
                 </div>
                 <div className="space-y-3">
-                    <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
-                        <MdOutlinePersonOutline  className="mr-2 text-lg"/>
-                        Profile
-                    </Button>
+                    <Link to={`/student/dashboard/${sanitizedId}/profile`}>
+                        <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
+                            <MdOutlinePersonOutline  className="mr-2 text-lg"/>
+                            Profile
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </div>

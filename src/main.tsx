@@ -15,6 +15,7 @@ import { Provider } from 'react-redux'
 import store from './store/store.ts'
 import FormUpdateJurusan from './pages/admin/dashboard/formupdatejurusan.tsx'
 import FormUpdateJurusanWrapper from './pages/wrapper/formupdatejurusanwrapper.tsx'
+import Profile from './pages/student/dashboard/profile.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -27,6 +28,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/register/student' element={<Register />} />
           <Route path='/student/dashboard/:id' element={<DashboardStudent />} />
           <Route path='/student/dashboard/:id/announcement' element={<Announcement />} />
+          <Route path='/student/dashboard/:id/profile' element={<Profile />} />
           <Route path='/admin/dashboard' element={<DashboardAdmin />} />
           <Route path='/admin/dashboard/jurusan' element={<JurusanAdmin />} />
           <Route path='/admin/dashboard/datapeserta' element={<DataPeserta />} />
