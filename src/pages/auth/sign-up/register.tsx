@@ -21,21 +21,24 @@ import {
 } from "@/components/ui/select"
  
 import { Input } from "@/components/ui/input"
+import { useRegisterMutation } from '@/store/slices/auht.service';
+import { useGetAllJurusanQuery } from '@/store/slices/jurusanSlice.service';
+import { Jurusan } from '@/interfaces/jurusan';
 
 const formSchema = z.object({
-    username: z.string().min(2, {
+    name: z.string().min(2, {
       message: "Username must be at least 2 characters.",
     }),
-    namalengkap: z.string().min(2, {
+    nama_lengkap: z.string().min(2, {
       message: "Nama Lengkap must be at least 2 characters.",
     }),
-    tanggallahir: z.string().date("Please input valid date"),
-    gender: z
+    tanggal_lahir: z.string().date("Please input valid date"),
+    jenis_kelamin: z
     .string({
       required_error: "Please select gender to display.",
     }),
-    phone: z.string().min(2, {message : "Phone number must be at least 2 characters "}),
-    asalSekolah: z
+    nomor_telepon: z.string().min(2, {message : "Phone number must be at least 2 characters "}),
+    asal_sekolah: z
     .string({
       required_error: "Please insert your past school.",
     }).min(2, {message: "Asal sekolah jangan kosong!"}),
@@ -43,7 +46,7 @@ const formSchema = z.object({
     .string({
       required_error: "Please insert your address.",
     }).min(2, {message: "Address must be filled"}),
-    jurusan: z
+    jurusan_id: z
     .string({
       required_error: "Please insert your desired jurusan.",
     }),
@@ -51,28 +54,44 @@ const formSchema = z.object({
     password: z.string().max(8, {
         message: "Password must be 8 characters.",
       }),
+    password_confirmation: z.string().max(8, {
+      message: "Password must be 8 characters.",
+    }),
   })
    
 
 const Register = () => {
+
+  const router = useNavigate() 
+  const [register, {isLoading}] = useRegisterMutation()
+  const {data : jurusan} = useGetAllJurusanQuery({})
+  
+
   
   const form = useForm<z.infer<typeof formSchema>>({
           resolver: zodResolver(formSchema),
           defaultValues: {
-            username: "",
-            namalengkap: "",
-            tanggallahir: "",
-            gender:"",
-            asalSekolah:"",
+            name: "",
+            nama_lengkap: "",
+            tanggal_lahir: "",
+            jenis_kelamin:"",
+            nomor_telepon:"",
+            asal_sekolah:"",
             alamat:"",
-            jurusan:"",
+            jurusan_id:"",
             email: "",
             password: "",
+            password_confirmation:""
           },
         })
   
-        function onSubmit(values: z.infer<typeof formSchema>) {
-          console.log(values)
+        async function onSubmit(values: z.infer<typeof formSchema>) {
+          try {
+            await register(values).unwrap()
+            router(`/login`)
+          } catch (error) {
+            console.error("Registration failed:", error)
+          }
         }
 
   return (
@@ -83,7 +102,7 @@ const Register = () => {
            bg-white rounded-xl p-10 mt-5 gap-8  grid grid-cols-2 justify-center items-center">
             <FormField
               control={form.control}
-              name="namalengkap"
+              name="nama_lengkap"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Nama Lengkap</FormLabel>
@@ -97,7 +116,7 @@ const Register = () => {
 
             <FormField
               control={form.control}
-              name="username"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Username</FormLabel>
@@ -110,7 +129,7 @@ const Register = () => {
             />
             <FormField
               control={form.control}
-              name="tanggallahir"
+              name="tanggal_lahir"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Tanggal Lahir</FormLabel>
@@ -123,7 +142,7 @@ const Register = () => {
             />
             <FormField
               control={form.control}
-              name="gender"
+              name="jenis_kelamin"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Jenis Kelamin</FormLabel>
@@ -134,7 +153,7 @@ const Register = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="laki-laki">Laki - Laki</SelectItem>
+                        <SelectItem value="laki - laki">Laki - Laki</SelectItem>
                         <SelectItem value="perempuan">Perempuan</SelectItem>
                       </SelectContent>
                     </Select>
@@ -143,7 +162,7 @@ const Register = () => {
             />
             <FormField
               control={form.control}
-              name="phone"
+              name="nomor_telepon"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Nomor Telepon</FormLabel>
@@ -158,7 +177,7 @@ const Register = () => {
 
             <FormField
               control={form.control}
-              name="asalSekolah"
+              name="asal_sekolah"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Asal Sekolah</FormLabel>
@@ -185,7 +204,7 @@ const Register = () => {
 
             <FormField
               control={form.control}
-              name="gender"
+              name="jurusan_id"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Jurusan yang ingin dipilih</FormLabel>
@@ -196,14 +215,14 @@ const Register = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="laki-laki">A</SelectItem>
-                        <SelectItem value="perempuan">B</SelectItem>
+                        {jurusan?.data?.map((item:Jurusan, index:number) => (
+                        <SelectItem value={`${item.id}`}>{item.nama_jurusan}</SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                 </FormItem>
               )}
             />
-            
             <FormField
               control={form.control}
               name="email"
@@ -230,7 +249,23 @@ const Register = () => {
                 </FormItem>
               )}
             />
-              <Button className='bg-yellow-400 col-span-2 border-2 border-black hover:bg-white hover:border-yellow-400 text-black ' type="submit">Submit</Button>
+            <FormField
+              control={form.control}
+              name="password_confirmation"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirm Your Password</FormLabel>
+                  <FormControl>
+                    <Input placeholder="password confirmation" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+              <Button className='bg-yellow-400 col-span-2 border-2 border-black hover:bg-white 
+              hover:border-yellow-400 text-black ' type="submit" disabled={isLoading}>
+                {isLoading ? "Submitting..." : "Submit"}
+              </Button>
           </form>
               <p className='flex gap-2 text-center '>Already have account? 
                   <Link to={'/login'}>

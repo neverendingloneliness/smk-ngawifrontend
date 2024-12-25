@@ -17,6 +17,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDeleteJurusanMutation, useGetAllJurusanQuery } from '@/store/slices/jurusanSlice.service';
 import { Jurusan } from '@/interfaces/jurusan';
+import { IoMdHammer } from "react-icons/io";
 
 const JurusanAdmin = () => {
 
@@ -26,6 +27,10 @@ const JurusanAdmin = () => {
 
   const handleDelete = async(jurusanid:string) => {
     try {
+      const isConfirm = window.confirm("Are you sure you want to delete this jurusan?")
+      if(!isConfirm){
+        return
+      }
       await deleteJurusan(jurusanid).unwrap()
     } catch (error) {
       console.error("Failed to delete jurusan:", error)
@@ -42,8 +47,11 @@ const JurusanAdmin = () => {
             <SidebarAdmin  />
       </div>
         <div className='text-black w-full h-full gap-10 p-6 flex-col flex justify-center items-center '>
-          <h1 className='text-3xl font-bold'>Jurusan</h1>
-          <Table>
+          <h1 className='text-3xl font-bold'>
+              Jurusan
+          </h1>
+            
+          <Table className=''>
             <TableHeader >
             <Link to={'/admin/dashboard/addjurusan'}>
               <Button className='mb-8 bg-yellow-200 text-black hover:bg-black hover:text-white' >
@@ -51,15 +59,17 @@ const JurusanAdmin = () => {
                 Add jurusan
               </Button>
             </Link>
-              <TableRow>
-                <TableHead className="w-[100px]">jurusan</TableHead>
-                <TableHead>deskripsi jurusan</TableHead>
-                <TableHead className="text-right">Action</TableHead>
+              <TableRow className='text-2xl'>
+                <TableHead className="w-[100px] font-bold">No</TableHead>
+                <TableHead className="font-bold">Jurusan</TableHead>
+                <TableHead className='font-bold'>Deskripsi Jurusan</TableHead>
+                <TableHead className="text-right font-bold">Action</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className='mt-20 bg-gray-50'>
             {jurusan?.data?.map((item:Jurusan, index:number) => (
-              <TableRow>
+              <TableRow className='text-xl  '>
+                <TableCell>{item.id}</TableCell>
                 <TableCell>{item.nama_jurusan}</TableCell>
                 <TableCell>{item.deskripsi_jurusan}</TableCell>
                 <TableCell className="items-end justify-end flex gap-5">

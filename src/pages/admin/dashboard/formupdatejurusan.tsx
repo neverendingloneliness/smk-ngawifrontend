@@ -34,7 +34,7 @@ interface FormUpdatejurusanProps{
 
 const FormUpdateJurusan : React.FC<FormUpdatejurusanProps> = ({selectedJurusan}) => {
   
-  const [updateJurusan, { isLoading, isSuccess, isError }] = useUpdateJurusanMutation()
+  const [updateJurusan, { isLoading, isSuccess, isError }] = useUpdateJurusanMutation({})
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -59,7 +59,7 @@ const FormUpdateJurusan : React.FC<FormUpdatejurusanProps> = ({selectedJurusan})
         jurusan: selectedJurusan.slug_jurusan,
         nama_jurusan: values.nama_jurusan,
         deskripsi_jurusan: values.deskripsi_jurusan,
-      }).unwrap()
+      })
       console.log('Jurusan updated successfully:', response)
     } catch (error) {
       console.error('Failed to create jurusan:', error)

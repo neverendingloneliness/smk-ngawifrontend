@@ -14,6 +14,9 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useLoginMutation } from '@/store/slices/auht.service';
+import { useDispatch,   } from 'react-redux';
+import { setCredentials } from '@/store/slices/authSlice';
 
 
 const formSchema = z.object({
@@ -22,9 +25,12 @@ const formSchema = z.object({
         message: "Username must be 8 characters.",
       }),
   })
-   
 
 const Login = () => {
+
+  const dispatch = useDispatch()
+  const route = useNavigate()
+  const [login, {isSuccess, isError}] = useLoginMutation()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -34,8 +40,37 @@ const Login = () => {
         },
       })
 
-      function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+      async function onSubmit(values: z.infer<typeof formSchema>) {
+        try {
+          const response = await login(values).unwrap()
+          console.log("Login Response:", JSON.stringify(response, null, 2))
+
+          const { data } = response;
+          if (!data) {
+            throw new Error("User data is missing in the response");
+          }
+          dispatch(
+            setCredentials({
+              user: {
+                id: data.id,
+                email: data.email,
+                name: data.name,
+                role: data.role,
+              },
+              token: data.token,
+            })
+          );
+          const { role, id } = response.data
+          if (role === 'admin') {
+            route("/admin/dashboard")
+          } else if (role === 'student' && id) {
+            route(`/student/dashboard/${id}`)
+          } else {
+            throw new Error("Unknown user role")
+          }
+        } catch (error) {
+          console.error("Login failed:", error)
+        }
       }
 
   return (
@@ -77,6 +112,8 @@ const Login = () => {
                 </p>
           </form>
         </Form>
+        {isSuccess && <p className="text-green-500 mt-4">Login successfully!</p>}
+        {isError && <p className="text-red-500 mt-4">Failed to Login. Please check the email / password.</p>}
     </div>
   )
 }

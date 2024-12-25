@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from '../../ui/button'
 import { AiOutlineHome , AiOutlineLogout } from "react-icons/ai";
 import { TbMessage2 } from "react-icons/tb";
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { MdOutlinePersonOutline } from "react-icons/md";
 
@@ -10,6 +10,7 @@ interface SideBarProps{
 }
 
 const SidebarStudent : React.FC<SideBarProps> = ({}) => {
+    const {id} = useParams() 
   return (
     <div className="pb-12 min-h-screen">
         <div className="space-y-4 py-4">
@@ -18,7 +19,7 @@ const SidebarStudent : React.FC<SideBarProps> = ({}) => {
                     Student Dashboard
                 </h2>
                 <div className="space-y-3">
-                    <Link to={'/student/dashboard/:id'}>
+                    <Link to={`/student/dashboard/${id}`}>
                         <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
                             <AiOutlineHome className="mr-2 text-lg"/>
                             Home

@@ -28,7 +28,7 @@ export const jurusanApi = apiSlice.injectEndpoints({
             query: ({ jurusan, nama_jurusan, deskripsi_jurusan }) => ({
                 url:`/jurusan/${jurusan}`,
                 method:"PUT",
-                body:nama_jurusan, deskripsi_jurusan
+                body:{ nama_jurusan, deskripsi_jurusan }
             })
         }),
         deleteJurusan: builder.mutation({
