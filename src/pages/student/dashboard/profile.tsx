@@ -22,9 +22,9 @@ const Profile = () => {
                 <div className='bg-yellow-300 inline-block p-2 px-8 rounded-xl'>
                     <h1 className='text-3xl font-bold text-start '>Profile Pendaftar</h1>
                 </div>
-                <div className='flex justify-center gap-16'>
+                <div className='flex flex-row-reverse justify-center mt-10 gap-16'>
                     <div className='flex flex-col gap-5 items-center justify-center'>
-                        <h1 className='text-7xl'><CgProfile /></h1>
+                        <h1 className='text-7xl bg-yellow-300 rounded-full'><CgProfile /></h1>
                         <h2 className='text-3xl font-semibold'>{user?.nama_lengkap || "Unnamed User"}</h2>
                     </div>
                     <div className='bg-yellow-100 p-8'>

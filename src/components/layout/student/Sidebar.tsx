@@ -27,14 +27,14 @@ const SidebarStudent : React.FC<SideBarProps> = ({}) => {
                         </Button>
                     </Link>
                 </div>
-                <div className="space-y-3">
+                {/* <div className="space-y-3">
                     <Link to={`/student/dashboard/${sanitizedId}}/announcement`}>
                         <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">
                             <TbMessage2  className="mr-2 text-lg"/>
                             Announcement
                         </Button>
                     </Link>
-                </div>
+                </div> */}
                 <div className="space-y-3">
                     <Link to={`/student/dashboard/${sanitizedId}/profile`}>
                         <Button variant={'ghost'} className="w-full hover:bg-yellow-200 justify-start rounded-none hover:text-primary">

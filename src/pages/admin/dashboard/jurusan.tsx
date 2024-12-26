@@ -67,11 +67,11 @@ const JurusanAdmin = () => {
               </TableRow>
             </TableHeader>
             <TableBody className='mt-20 bg-gray-50'>
-            {jurusan?.data?.map((item:Jurusan, index:number) => (
-              <TableRow className='text-xl  '>
-                <TableCell>{item.id}</TableCell>
-                <TableCell>{item.nama_jurusan}</TableCell>
-                <TableCell>{item.deskripsi_jurusan}</TableCell>
+            {jurusan?.data?.map((item:Jurusan) => (
+              <TableRow className='text-xl hover:bg-yellow-100 duration-300  '>
+                <TableCell >{item.id}</TableCell>
+                <TableCell >{item.nama_jurusan}</TableCell>
+                <TableCell >{item.deskripsi_jurusan}</TableCell>
                 <TableCell className="items-end justify-end flex gap-5">
                   <Button className='bg-yellow-200 text-black hover:bg-black hover:text-white'
                     onClick={() => handleUpdate(item.slug_jurusan)}>

@@ -28,7 +28,7 @@ const DataPeserta = () => {
       </div>
         <div className='text-black w-full h-full gap-10 p-6 flex-col flex justify-center items-center '>
           <h1 className='text-3xl font-bold'>Data Pendaftar</h1>
-          <Table>
+          <Table className='mt-20'>
             <TableHeader>
               <TableRow className='text-2xl'>
                 <TableHead className="">No</TableHead>
@@ -38,17 +38,17 @@ const DataPeserta = () => {
                 <TableHead>Status</TableHead>
               </TableRow>
             </TableHeader>
-            {pendaftaran?.data?.map((item:Pendaftaran, index:number) => (
-              <TableBody className='bg-gray-50 text-xl'>
-              <TableRow>
+              <TableBody className=' '>
+            {pendaftaran?.data?.map((item:Pendaftaran) => (
+              <TableRow className='bg-gray-50 text-xl hover:bg-yellow-100 duration-300'>
                 <TableCell>{item.id}</TableCell>
                 <TableCell>{item.user_id}</TableCell>
                 <TableCell>{item.jurusan_id}</TableCell>
                 <TableCell>{item.tanggal_pendafaran}</TableCell>
                 <TableCell>{item.status_pendaftaran}</TableCell>
               </TableRow>
-            </TableBody>
             ))}
+            </TableBody>
           </Table>
         </div>
     </div>

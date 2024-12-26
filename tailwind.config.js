@@ -56,7 +56,21 @@ export default {
 	
 		backgroundImage: {
 			'registration' : "url('/src/assets/auth/bg_regis.png') ", 
-		}
+		},
+		animation: {
+			'slide-up': 'slide-up 3s ease forwards',
+			'slide-down': 'slide-down 4s ease forwards',
+		  },
+		  keyframes: {
+			'slide-up': {
+			  '0%': { transform: 'translateY(-50px)', opacity: '0' },
+			  '100%': { transform: 'translateY(0)', opacity: '1' },
+			},
+			'slide-down': {
+			  '0%': { transform: 'translateY(50px)', opacity: '0' },
+			  '100%': { transform: 'translateY(0)', opacity: '1' },
+			},
+		},
   	}
   },
   plugins: [require("tailwindcss-animate")],
