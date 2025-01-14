@@ -66,8 +66,6 @@ const Register = () => {
   const [register, {isLoading}] = useRegisterMutation()
   const {data : jurusan} = useGetAllJurusanQuery({})
   
-
-  
   const form = useForm<z.infer<typeof formSchema>>({
           resolver: zodResolver(formSchema),
           defaultValues: {
@@ -215,7 +213,7 @@ const Register = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {jurusan?.data?.map((item:Jurusan, index:number) => (
+                        {jurusan?.data?.map((item:Jurusan) => (
                         <SelectItem value={`${item.id}`}>{item.nama_jurusan}</SelectItem>
                         ))}
                       </SelectContent>
@@ -243,7 +241,7 @@ const Register = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="password" {...field} />
+                    <Input type='password' placeholder="password" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -256,7 +254,7 @@ const Register = () => {
                 <FormItem>
                   <FormLabel>Confirm Your Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="password confirmation" {...field} />
+                    <Input type='password' placeholder="password confirmation" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

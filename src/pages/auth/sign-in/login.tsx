@@ -22,7 +22,7 @@ import { setCredentials } from '@/store/slices/authSlice';
 const formSchema = z.object({
     email: z.string().min(1, { message: "This field has to be filled." }).email("This is not a valid email."),
     password: z.string().max(8, {
-        message: "Username must be 8 characters.",
+        message: "Password must be 8 characters.",
       }),
   })
 
@@ -61,6 +61,10 @@ const Login = () => {
             })
           );
           const { role, id } = response.data
+
+          localStorage.setItem( 'role', data.role )
+          localStorage.setItem( 'id', JSON.stringify(data.id) )
+
           if (role === 'admin') {
             route("/admin/dashboard")
           } else if (role === 'student' && id) {
@@ -98,7 +102,7 @@ const Login = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="password" {...field} />
+                    <Input placeholder="password" type='password' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
